@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node 
+{
+  int data;
+  struct Node* prev;
+  struct Node* next;
+};
+void reverseDoublyLinkedList(struct Node** head)
+{
+  struct Node* temp = NULL;
+  struct Node* current = *head;
+  while (current != NULL) 
+  {
+    temp = current->prev;
+    current->prev = current->next;
+    current->next = temp;
+    current = current->prev;
+  }
+  if (temp != NULL) 
+  {
+    *head = temp->prev;
+  }
+}
+void printDoublyLinkedList(struct Node* node) 
+{
+  while (node != NULL)
+  {
+     printf("%d ", node->data);
+      node = node->next;
+  }
+}
+int main() 
+{
+    struct Node* head = NULL;
+    struct Node* second = NULL;
+    struct Node* third = NULL;
+    head = (struct Node*)malloc(sizeof(struct Node));
+    second = (struct Node*)malloc(sizeof(struct Node));
+    third = (struct Node*)malloc(sizeof(struct Node));
+    head->data = 1;
+    head->prev = NULL;
+    head->next = second;
+    second->data = 2;
+    second->prev = head;
+    second->next = third;
+    third->data = 3;
+    third->prev = second;
+    third->next = NULL;
+    printf("Original Doubly Linked List: ");
+    printDoublyLinkedList(head);
+    reverseDoublyLinkedList(&head);
+    printf("\nReversed Doubly Linked List: ");
+    printDoublyLinkedList(head);
+    return 0;
+}
