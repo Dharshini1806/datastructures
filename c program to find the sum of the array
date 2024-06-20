@@ -10,7 +10,7 @@
   }
   for(i=0;i<n;i++)
   {
-    sum=sum+arr[i]
+    sum=sum+arr[i];
     printf("the sum of the given array is :",sum);
   }
   return 0;
