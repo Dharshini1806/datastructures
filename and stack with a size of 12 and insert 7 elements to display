@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define STACK_SIZE 12
+struct Stack
+{
+  int items[STACK_SIZE];
+  int top;
+};
+void initStack(struct Stack *s)
+{
+  s->top = -1;
+}
+int isFull(struct Stack *s) 
+{
+  return s->top == STACK_SIZE - 1;
+}
+int isEmpty(struct Stack *s)
+{
+  return s->top == -1;
+}
+void push(struct Stack *s, int value) 
+{
+  if (isFull(s)) 
+  {
+    printf("Stack overflow! Cannot push %d.\n", value);
+  }
+  else 
+  {
+    s->items[++(s->top)] = value;
+    printf("Pushed %d onto the stack.\n", value);
+  }
+}
+int pop(struct Stack *s) 
+{
+  if (isEmpty(s)) 
+  {
+    printf("Stack underflow! Cannot pop from empty stack.\n");
+    return -1; // Return -1 indicating stack underflow
+  } 
+  else 
+  {
+    return s->items[(s->top)--];
+  }
+}
+void displayStack(struct Stack *s) 
+{
+  if (isEmpty(s)) 
+  {
+    printf("Stack is empty.\n");
+  } 
+  else 
+  {
+    printf("Elements in the stack:\n");
+    for (int i = s->top; i >= 0; i--)
+    {
+      printf("%d\n", s->items[i]);
+    }
+  }
+}
+int main() 
+{
+  struct Stack myStack;
+  initStack(&myStack);
+  push(&myStack, 10);
+  push(&myStack, 20);
+  push(&myStack, 30);
+  push(&myStack, 40);
+  push(&myStack, 50);
+  push(&myStack, 60);
+  push(&myStack, 70);
+  displayStack(&myStack);
+  return 0;
+}
