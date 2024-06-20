@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node 
+{
+  int data;
+  struct Node* next;
+};
+void updateItem(struct Node* head, int oldValue, int newValue)
+{
+  struct Node* current = head;
+  while (current != NULL) 
+  {
+    if (current->data == oldValue) 
+    {
+      current->data = newValue;
+      return;
+    }
+    current = current->next;
+  }
+}
+int main() 
+{
+  struct Node* head = NULL;
+  updateItem(head, 5, 10); 
+  return 0;
+}
