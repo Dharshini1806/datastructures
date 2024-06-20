@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node 
+{
+  int data;
+  struct Node* prev;
+  struct Node* next;
+};
+struct Node* search(struct Node* head, int key) 
+{
+  struct Node* current = head;
+  while (current != NULL && current->data != key) 
+  {
+    current = current->next;
+  }
+  return current;
+}
