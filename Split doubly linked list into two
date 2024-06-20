@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+  int data;
+  struct Node* prev;
+  struct Node* next;
+};
+void insertAtEnd(struct Node** head, int data) 
+{
+  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+  struct Node* last = *head;
+  newNode->data = data;
+  newNode->next = NULL;
+  if (*head == NULL) 
+  {
+    newNode->prev = NULL;
+    *head = newNode;
+    return;
+  }
+  while (last->next != NULL)
+    last = last->next;
+    last->next = newNode;
+    newNode->prev = last;
+}
+void splitDoublyLinkedList(struct Node* head, struct Node** first, struct Node** second) 
+{
+  struct Node* slow;
+  struct Node* fast;
+  if (head == NULL || head->next == NULL) 
+  {
+    *first = head;
+    *second = NULL;
+    return;
+  }
+  slow = head;
+  fast = head->next;
+  while (fast != NULL)
+  {
+    fast = fast->next;
+    if (fast != NULL) 
+    {
+      slow = slow->next;
+      fast = fast->next;
+    }
+  }
+  *first = head;
+  *second = slow->next;
+  slow->next->prev = NULL;
+  slow->next = NULL;
+}
+void printList(struct Node* node) 
+{
+   while (node != NULL) 
+   {
+      printf("%d ", node->data);
+      node = node->next;
+   }
+  printf("\n");
+}
+int main() 
+{
+  struct Node* head = NULL;
+  struct Node* first = NULL;
+  struct Node* second = NULL;
+  insertAtEnd(&head, 1);
+  insertAtEnd(&head, 2);
+  insertAtEnd(&head, 3);
+  insertAtEnd(&head, 4);
+  insertAtEnd(&head, 5);
+  printf("Original Doubly Linked List:\n");
+  printList(head);
+  splitDoublyLinkedList(head, &first, &second);
+  printf("First half of the Doubly Linked List:\n");
+  printList(first);
+  printf("Second half of the Doubly Linked List:\n");
+  printList(second);
+  return 0;
+}
