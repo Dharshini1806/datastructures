@@ -1,0 +1,19 @@
+#include <stdio.h>
+{
+  int arr[10],i,n,sum=0;
+  float average;
+  printf("enter the size of an array :");
+  scanf("%d",&n);
+  printf("enter the elements of an array :");
+  for(i=0;i<n;i++)
+  {
+     scanf("%d",&arr[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    sum=sum+arr[i];
+    average=sum/n
+    printf("the average of the given array is :",average);
+  }
+  return 0;
+}
