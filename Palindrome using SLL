@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define MAX 1000 
+Void findFrequentNumbers(int arr[], int n) {
+    Int freq[MAX] = {0}; 
+    Int i;
+    For (i = 0; i < n; i++) {
+        Freq[arr[i]]++;
+    }
+    Int maxFreq = 0;
+    For (i = 0; i < MAX; i++) {
+        If (freq[i] > maxFreq) {
+            maxFreq = freq[i];
+        }
+    }
+    Printf(“Numbers with the highest frequency (%d):\n”, maxFreq);
+    For (i = 0; i < MAX; i++) {
+        If (freq[i] == maxFreq && maxFreq > 1) { // Only print if frequency > 1
+            Printf(“Number %d appears %d times\n”, i, freq[i]);
+        }
+    }
+}
+
+Int main() {
+    Int arr[] = {1, 3, 2, 3, 1, 2, 3, 4, 2, 2}; // Example array
+    Int n = sizeof(arr) / sizeof(arr[0]);
+    Printf(“Input array:\n”);
+    For (int i = 0; i < n; i++) {
+        Printf(“%d “, arr[i]);
+    }
+    Printf(“\n”);
+
+    // Find and print the frequently repeated numbers
+    findFrequentNumbers(arr, n);
+
+    return 0;
+}
