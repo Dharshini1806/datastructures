@@ -1,0 +1,28 @@
+#include <stdio.h>
+Void printOddEven(int arr[], int size) {
+    Printf(“Odd numbers in the array: “);
+    For(int i = 0; i < size; i++) {
+        If(arr[i] % 2 != 0) {
+            Printf(“%d “, arr[i]);
+        }
+    }
+    Printf(“\n”);
+    Printf(“Even numbers in the array: “);
+    For(int i = 0; i < size; i++) {
+        If(arr[i] % 2 == 0) {
+            Printf(“%d “, arr[i]);
+        }
+    }
+    Printf(“\n”);
+}
+Int main() {
+    Int arr[] = {12, 7, 9, 4, 8, 6, 3, 10};
+    Int size = sizeof(arr) / sizeof(arr[0]);
+    Printf(“Array elements: “);
+    For(int i = 0; i < size; i++) {
+        Printf(“%d “, arr[i]);
+    }
+    Printf(“\n”);
+    printOddEven(arr, size);
+    return 0;
+}
