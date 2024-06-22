@@ -1,0 +1,16 @@
+#include <stdio.h>
+Int findMissingElement(int arr[], int n) {
+    Int total = (n + 1) * (n + 2) / 2; // Sum of the first n+1 natural numbers
+    Int sum = 0;
+    For (int i = 0; i < n; i++) {
+        Sum += arr[i];
+    }
+    Return total – sum;
+}
+Int main() {
+    Int arr[] = {1, 2, 4, 6, 3, 7, 8};
+    Int n = sizeof(arr) / sizeof(arr[0]);
+    Int missingElement = findMissingElement(arr, n);
+    Printf(“The missing element is: %d\n”, missingElement);
+    Return 0;
+}
