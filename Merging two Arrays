@@ -1,0 +1,32 @@
+#include <stdio.h>
+Void mergeArrays(int arr1[], int size1, int arr2[], int size2, int mergedArray[]) {
+    Int i = 0, j = 0, k = 0;
+    While (i < size1 && j < size2) {
+        If (arr1[i] < arr2[j]) {
+            mergedArray[k++] = arr1[i++];
+        } else {
+            mergedArray[k++] = arr2[j++];
+        }
+    }
+    While (i < size1) {
+        mergedArray[k++] = arr1[i++];
+    }
+    While (j < size2) {
+        mergedArray[k++] = arr2[j++];
+    }
+}
+
+Int main() {
+    Int arr1[] = {1, 3, 5, 7};
+    Int arr2[] = {2, 4, 6, 8, 10};
+    Int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    Int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    Int mergedArray[size1 + size2];
+    mergeArrays(arr1, size1, arr2, size2, mergedArray);
+    printf(“Merged array: “);
+    for (int i = 0; i < size1 + size2; i++) {
+        printf(“%d “, mergedArray[i]);
+    }
+    Printf(“\n”);
+    Return 0;
+}
