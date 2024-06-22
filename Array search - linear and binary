@@ -1,0 +1,43 @@
+#include <stdio.h>
+Int linearSearch(int arr[], int n, int x) {
+    For (int i = 0; i < n; i++) {
+        If (arr[i] == x)
+            Return i;
+    }
+    Return -1;
+}
+Int binarySearch(int arr[], int l, int r, int x) {
+    While (l <= r) {
+        Int m = l + (r – l) / 2;
+        If (arr[m] == x)
+            Return m;
+        If (arr[m] < x)
+            L = m + 1;
+        Else
+            R = m – 1;
+    }
+    Return -1;
+}
+Void printArray(int arr[], int size) {
+    For (int i = 0; i < size; i++) {
+        Printf(“%d “, arr[i]);
+    }
+    Printf(“\n”);
+}
+Int main() {
+    Int arr[] = {2, 3, 4, 10, 40};
+    Int n = sizeof(arr) / sizeof(arr[0]);
+    Int x = 10;
+    Int result;
+    Result = linearSearch(arr, n, x);
+    If (result != -1)
+        Printf(“Element %d found at index %d using Linear Search.\n”, x, result);
+    Else
+        Printf(“Element %d not found using Linear Search.\n”, x);
+    Result = binarySearch(arr, 0, n – 1, x);
+    If (result != -1)
+        Printf(“Element %d found at index %d using Binary Search.\n”, x, result);
+    Else
+        Printf(“Element %d not found using Binary Search.\n”, x);
+    Return 0;
+}
