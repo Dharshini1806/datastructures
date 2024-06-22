@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct Node {
+    Int data;
+    Struct Node* left;
+    Struct Node* right;
+};
+Struct Node* createNode(int data) {
+    Struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+Struct Node* insertNode(struct Node* root, int data) {
+    If (root == NULL) {
+        Return createNode(data);
+    }
+    If (data < root->data) {
+        Root->left = insertNode(root->left, data);
+    } else {
+        Root->right = insertNode(root->right, data);
+    }
+    Return root;
+}
+Void findKthSmallestUtil(struct Node* root, int k, int* count, int* result) {
+    If (root == NULL || *count >= k) {
+        Return;
+    }
+    findKthSmallestUtil(root->left, k, count, result);
+    (*count)++;
+    If (*count == k) {
+        *result = root->data;
+        Return;
+    }
+    findKthSmallestUtil(root->right, k, count, result);
+}
+Int findKthSmallest(struct Node* root, int k) {
+    Int count = 0;
+    Int result = -1; 
+    findKthSmallestUtil(root, k, &count, &result);
+    return result;
+}
+Void inorderTraversal(struct Node* root) {
+    If (root != NULL) {
+        inorderTraversal(root->left);
+        printf(“%d “, root->data);
+        inorderTraversal(root->right);
+    }
+}
+Int main() {
+    Struct Node* root = NULL;
+    Root = insertNode(root, 50);
+    insertNode(root, 30);
+    insertNode(root, 70);
+    insertNode(root, 20);
+    insertNode(root, 40);
+    insertNode(root, 60);
+    insertNode(root, 80);
+    printf(“In-order traversal: “);
+    inorderTraversal(root);
+    printf(“\n”);
+    int k = 3;
+    int kthSmallest = findKthSmallest(root, k);
+    if (kthSmallest != -1) {
+        printf(“The %d-th smallest element in the BST is: %d\n”, k, kthSmallest);
+    } else {
+        Printf(“The %d-th smallest element does not exist.\n”, k);
+    }
+    Return 0;
+}
