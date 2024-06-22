@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct Node {
+    Int data;
+    Struct Node* next;
+};
+Struct Node* createNode(int data) {
+    Struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    If (!newNode) {
+        Printf(“Memory error\n”);
+        Return NULL;
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+Void appendNode(struct Node** head, int data) {
+    Struct Node* newNode = createNode(data);
+    If (*head == NULL) {
+        *head = newNode;
+        Return;
+    }
+    Struct Node* temp = *head;
+    While (temp->next != NULL) {
+        Temp = temp->next;
+    }
+    Temp->next = newNode;
+}
+Int countNodes(struct Node* head) {
+    Int count = 0;
+    Struct Node* current = head;
+    While (current != NULL) {
+        Count++;
+        Current = current->next;
+    }
+    Return count;
+}
+
+// Function to print the linked list
+Void printList(struct Node* head) {
+    Struct Node* temp = head;
+    While (temp != NULL) {
+        Printf(“%d -> “, temp->data);
+        Temp = temp->next;
+    }
+    Printf(“NULL\n”);
+}
+Int main() {
+    Struct Node* head = NULL;
+    appendNode(&head, 10);
+    appendNode(&head, 20);
+    appendNode(&head, 30);
+    appendNode(&head, 40);
+    appendNode(&head, 50);
+    printf(“Linked List: “);
+    printList(head);
+    int count = countNodes(head);
+    printf(“Number of nodes in the linked list: %d\n”, count);
+    return 0;
+}
