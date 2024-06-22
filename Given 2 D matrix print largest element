@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+Int findLargestElement(int** matrix, int rows, int cols) {
+    Int maxElement = matrix[0][0];
+    For (int i = 0; i < rows; i++) {
+        For (int j = 0; j < cols; j++) {
+            If (matrix[i][j] > maxElement) {
+                maxElement = matrix[i][j];
+            }
+        }
+    }
+    Return maxElement;
+}
+Void printMatrix(int** matrix, int rows, int cols) {
+    For (int i = 0; i < rows; i++) {
+        For (int j = 0; j < cols; j++) {
+            Printf(“%d “, matrix[i][j]);
+        }
+        Printf(“\n”);
+    }
+}
+Int main() {
+    Int rows = 3;
+    Int cols = 3;
+    Int** matrix = (int**)malloc(rows * sizeof(int*));
+    For (int i = 0; i < rows; i++) {
+        Matrix[i] = (int*)malloc(cols * sizeof(int));
+    }
+    Int count = 1;
+    For (int i = 0; i < rows; i++) {
+        For (int j = 0; j < cols; j++) {
+            Matrix[i][j] = count++;
+        }
+    }
+    Printf(“The matrix is:\n”);
+    printMatrix(matrix, rows, cols);
+    int largestElement = findLargestElement(matrix, rows, cols);
+    printf(“The largest element in the matrix is: %d\n”, largestElement);
+    for (int i = 0; i < rows; i++) {
+        free(matrix[i]);
+    }
+    Free(matrix);
+    Return 0;
+}
