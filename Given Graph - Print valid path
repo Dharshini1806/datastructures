@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct AdjListNode {
+    Int dest;
+    Struct AdjListNode* next;
+};
+Struct AdjList {
+    Struct AdjListNode* head;
+};
+Struct Graph {
+    Int V;
+    Struct AdjList* array;
+};
+Struct AdjListNode* newAdjListNode(int dest) {
+    Struct AdjListNode* newNode = (struct AdjListNode*)malloc(sizeof(struct AdjListNode));
+    newNode->dest = dest;
+    newNode->next = NULL;
+    return newNode;
+}
+Struct Graph* createGraph(int V) {
+    Struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+    Graph->V = V;
+    Graph->array = (struct AdjList*)malloc(V * sizeof(struct AdjList));
+    For (int i = 0; i < V; ++i) {
+        Graph->array[i].head = NULL;
+    }
+    Return graph;
+}
+Void addEdge(struct Graph* graph, int src, int dest) {
+    Struct AdjListNode* newNode = newAdjListNode(dest);
+    newNode->next = graph->array[src].head;
+    graph->array[src].head = newNode;
+    newNode = newAdjListNode(src);
+    newNode->next = graph->array[dest].head;
+    graph->array[dest].head = newNode;
+}
+Void printGraph(struct Graph* graph) {
+    For (int v = 0; v < graph->V; ++v) {
+        Struct AdjListNode* pCrawl = graph->array[v].head;
+        Printf(“\n Adjacency list of vertex %d\n head “, v);
+        While (pCrawl) {
+            Printf(“-> %d”, pCrawl->dest);
+            pCrawl = pCrawl->next;
+        }
+        Printf(“\n”);
+    }
+}
+Void printPath(int path[], int path_index) {
+    For (int i = 0; i <= path_index; i++) {
+        Printf(“%d “, path[i]);
+    }
+    Printf(“\n”);
+}
+Int DFSUtil(struct Graph* graph, int src, int dest, int visited[], int path[], int path_index) {
+    Visited[src] = 1;
+    Path[path_index] = src;
+    Path_index++;
+    If (src == dest) {
+        printPath(path, path_index – 1);
+        return 1;
+    }
+    Struct AdjListNode* pCrawl = graph->array[src].head;
+    While (pCrawl) {
+        Int adj = pCrawl->dest;
+        If (!visited[adj]) {
+            If (DFSUtil(graph, adj, dest, visited, path, path_index)) {
+                Return 1;
+            }
+        }
+        pCrawl = pCrawl->next;
+    }
+    Path_index--;
+    Visited[src] = 0;
+    Return 0;
+}
+Void findPath(struct Graph* graph, int src, int dest) {
+    Int* visited = (int*)malloc(graph->V * sizeof(int));
+    Int* path = (int*)malloc(graph->V * sizeof(int));
+    Int path_index = 0;
+    For (int i = 0; i < graph->V; i++) {
+        Visited[i] = 0;
+    }
+    If (!DFSUtil(graph, src, dest, visited, path, path_index)) {
+        Printf(“No path found from %d to %d\n”, src, dest);
+    }
+
+    Free(visited);
+    Free(path);
+}
+Int main() {
+    Int V = 4;
+    Struct Graph* graph = createGraph(V);
+    addEdge(graph, 0, 1);
+    addEdge(graph, 0, 2);
+    addEdge(graph, 1, 2);
+    addEdge(graph, 2, 3);
+    printGraph(graph);
+    printf(“\nPath from 0 to 3:\n”);
+    findPath(graph, 0, 3);
+    for (int i = 0; i < V; ++i) {
+        struct AdjListNode* pCrawl = graph->array[i].head;
+        while (pCrawl) {
+            struct AdjListNode* temp = pCrawl;
+            pCrawl = pCrawl->next;
+            free(temp);
+        }
+    }
+    Free(graph->array);
+    Free(graph);
+
+    Return 0;
+}
