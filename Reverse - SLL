@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+Struct Node {
+    Int data;
+    Struct Node* next;
+};
+
+Struct Node* reverse(struct Node* head) {
+    Struct Node *prev = NULL;
+    Struct Node *current = head;
+    Struct Node *next = NULL;
+
+    While (current != NULL) {
+        Next = current->next;
+        Current->next = prev;
+        Prev = current;
+        Current = next;
+    }
+    Head = prev;
+    Return head;
+}
+
+Void printList(struct Node* head) {
+    Struct Node* temp = head;
+    While (temp != NULL) {
+        Printf(“%d “, temp->data);
+        Temp = temp->next;
+    }
+}
+
+Int main() {
+    Struct Node* head = NULL;
+    Struct Node* second = NULL;
+    Struct Node* third = NULL;
+
+    Head = (struct Node*)malloc(sizeof(struct Node));
+    Second = (struct Node*)malloc(sizeof(struct Node));
+    Third = (struct Node*)malloc(sizeof(struct Node));
+
+    Head->data = 1;
+    Head->next = second;
+
+    Second->data = 2;
+    Second->next = third;
+
+    Third->data = 3;
+    Third->next = NULL;
+
+    Printf(“Original Linked list: \n”);
+    printList(head);
+
+    head = reverse(head);
+
+    printf(“\nReversed Linked list: \n”);
+    printList(head);
+
+    return 0;
+}
