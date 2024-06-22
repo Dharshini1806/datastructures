@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX_LENGTH 100
+Int isValidString(const char *str) {
+    Int length = strlen(str);
+    If (length == 0 || length > MAX_LENGTH) {
+        Return 0;
+    }
+    For (int i = 0; i < length; i++) {
+        If (!isalpha(str[i])) {
+            Return 0;
+        }
+    }
+
+    Return 1;
+}
+Int main() {
+    Char str[MAX_LENGTH + 1];
+    Printf(“Enter a string: “);
+    Fgets(str, sizeof(str), stdin);
+    Str[strcspn(str, “\n”)] = 0;
+    If (isValidString(str)) {
+        Printf(“The string is valid.\n”);
+    } else {
+        Printf(“The string is invalid.\n”);
+    }
+    Return 0;
+}
