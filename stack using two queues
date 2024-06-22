@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+Struct QueueNode {
+    Int data;
+    Struct QueueNode* next;
+};
+Struct Queue {
+    Struct QueueNode *front, *rear;
+};
+Struct QueueNode* createQueueNode(int data) {
+    Struct QueueNode* newNode = (struct QueueNode*)malloc(sizeof(struct QueueNode));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+Struct Queue* createQueue() {
+    Struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+    Queue->front = queue->rear = NULL;
+    Return queue;
+}
+Void enqueue(struct Queue* queue, int data) {
+    Struct QueueNode* newNode = createQueueNode(data);
+    If (queue->rear == NULL) {
+        Queue->front = queue->rear = newNode;
+        Return;
+    }
+    Queue->rear->next = newNode;
+    Queue->rear = newNode;
+}
+Int dequeue(struct Queue* queue) {
+    If (queue->front == NULL) {
+        Return -1;
+    }
+    Struct QueueNode* temp = queue->front;
+    Int data = temp->data;
+    Queue->front = queue->front->next;
+    If (queue->front == NULL) {
+        Queue->rear = NULL;
+    }
+    Free(temp);
+    Return data;
+}
+Bool isEmpty(struct Queue* queue) {
+    Return queue->front == NULL;
+}
+Struct Stack {
+    Struct Queue* queue1;
+    Struct Queue* queue2;
+};
+Struct Stack* createStack() {
+    Struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    Stack->queue1 = createQueue();
+    Stack->queue2 = createQueue();
+    Return stack;
+}
+Void push(struct Stack* stack, int data) {
+    Enqueue(stack->queue1, data);
+}
+Int pop(struct Stack* stack) {
+    If (isEmpty(stack->queue1)) {
+        Printf(“Stack Underflow\n”);
+        Return -1;
+    }
+    While (stack->queue1->front->next != NULL) {
+        Enqueue(stack->queue2, dequeue(stack->queue1));
+    }
+    Int popped = dequeue(stack->queue1);
+    Struct Queue* temp = stack->queue1;
+    Stack->queue1 = stack->queue2;
+    Stack->queue2 = temp;
+    Return popped;
+}
+Int top(struct Stack* stack) {
+    If (isEmpty(stack->queue1)) {
+        Printf(“Stack is empty\n”);
+        Return -1;
+    }
+    While (stack->queue1->front->next != NULL) {
+        Enqueue(stack->queue2, dequeue(stack->queue1));
+    }
+    Int topElement = stack->queue1->front->data;
+    Enqueue(stack->queue2, dequeue(stack->queue1));
+    Struct Queue* temp = stack->queue1;
+    Stack->queue1 = stack->queue2;
+    Stack->queue2 = temp;
+    Return topElement;
+}
+Bool isStackEmpty(struct Stack* stack) {
+    Return isEmpty(stack->queue1);
+}
+Int main() {
+    Struct Stack* stack = createStack();
+    Push(stack, 10);
+    Push(stack, 20);
+    Push(stack, 30);
+    Printf(“Top element is %d\n”, top(stack));
+    Printf(“Popped element is %d\n”, pop(stack));
+    Printf(“Top element is %d\n”, top(stack));
+    Printf(“Popped element is %d\n”, pop(stack));
+    Printf(“Popped element is %d\n”, pop(stack));
+    Printf(“Popped element is %d\n”, pop(stack));  
+    Return 0;
+}
