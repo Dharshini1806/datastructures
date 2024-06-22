@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <limits.h>
+Int reverse(int x) {
+    Int reversed = 0;
+    While (x != 0) {
+        Int pop = x % 10;
+        X /= 10;
+        If (reversed > INT_MAX/10 || (reversed == INT_MAX / 10 && pop > 7)) return 0;
+        If (reversed < INT_MIN/10 || (reversed == INT_MIN / 10 && pop < -8)) return 0;
+        Reversed = reversed * 10 + pop;
+    }
+    Return reversed;
+}
+Int main() {
+    Int num;
+    Printf(“Enter a 32-bit signed integer: “);
+    Scanf(“%d”, &num);
+    Int result = reverse(num);
+    If(result == 0) {
+        Printf(“The reversed integer overflows/underflows 32-bit signed integer range.\n”);
+    } else {
+        Printf(“Reversed integer: %d\n”, result);
+    }
+    Return 0;
+}
