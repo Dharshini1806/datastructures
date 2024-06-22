@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#define MAX 100 
+Struct Stack {
+    Int top;
+    Int arr[MAX];
+};
+Void initialize(struct Stack* stack) {
+    Stack->top = -1;
+}
+Bool isEmpty(struct Stack* stack) {
+    Return stack->top == -1;
+}
+Bool isFull(struct Stack* stack) {
+    Return stack->top == MAX – 1;
+}
+Void push(struct Stack* stack, int value) {
+    If (isFull(stack)) {
+        Printf(“Stack overflow\n”);
+        Return;
+    }
+    Stack->arr[++stack->top] = value;
+    Printf(“%d pushed onto stack\n”, value);
+}
+Int pop(struct Stack* stack) {
+    If (isEmpty(stack)) {
+        Printf(“Stack underflow\n”);
+        Return -1; 
+    }
+    Return stack->arr[stack->top--];
+}
+Int peek(struct Stack* stack) {
+    If (isEmpty(stack)) {
+        Printf(“Stack is empty\n”);
+        Return -1; 
+    }
+    Return stack->arr[stack->top];
+}
+Void printStack(struct Stack* stack) {
+    If (isEmpty(stack)) {
+        Printf(“Stack is empty\n”);
+        Return;
+    }
+    Printf(“Stack elements are:\n”);
+    For (int i = 0; i <= stack->top; i++) {
+        Printf(“%d “, stack->arr[i]);
+    }
+    Printf(“\n”);
+}
+Int main() {
+    Struct Stack stack;
+    Initialize(&stack);
+    Push(&stack, 10);
+    Push(&stack, 20);
+    Push(&stack, 30);
+    printStack(&stack);
+    printf(“Top element is %d\n”, peek(&stack));
+    printf(“%d popped from stack\n”, pop(&stack));
+    printf(“%d popped from stack\n”, pop(&stack));
+    printStack(&stack);
+    return 0;
+}
