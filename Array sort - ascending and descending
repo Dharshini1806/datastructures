@@ -1,0 +1,46 @@
+#include <stdio.h>
+Void swap(int *a, int *b) {
+    Int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+Void bubbleSortAscending(int arr[], int n) {
+    For (int i = 0; i < n-1; i++) {
+        For (int j = 0; j < n-i-1; j++) {
+            If (arr[j] > arr[j+1]) {
+                Swap(&arr[j], &arr[j+1]);
+            }
+        }
+    }
+}
+Void bubbleSortDescending(int arr[], int n) {
+    For (int i = 0; i < n-1; i++) {
+        For (int j = 0; j < n-i-1; j++) {
+            If (arr[j] < arr[j+1]) {
+                Swap(&arr[j], &arr[j+1]);
+            }
+        }
+    }
+}
+
+// Function to print the array
+Void printArray(int arr[], int size) {
+    For (int i = 0; i < size; i++) {
+        Printf(“%d “, arr[i]);
+    }
+    Printf(“\n”);
+}
+Int main() {
+    Int arr[] = {64, 25, 12, 22, 11};
+    Int n = sizeof(arr)/sizeof(arr[0]);
+    Printf(“Original array: \n”);
+    printArray(arr, n);
+    bubbleSortAscending(arr, n);
+    printf(“Sorted array in ascending order: \n”);
+    printArray(arr, n);
+    int arr2[] = {64, 25, 12, 22, 11};
+    bubbleSortDescending(arr2, n);
+    printf(“Sorted array in descending order: \n”);
+    printArray(arr2, n);
+    return 0;
+}
