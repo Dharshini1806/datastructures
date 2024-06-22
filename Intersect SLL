@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+Struct Node {
+    Int data;
+    Struct Node* next;
+};
+
+Void push(struct Node** head_ref, int new_data) {
+    Struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    New_node->data = new_data;
+    New_node->next = (*head_ref);
+    (*head_ref) = new_node;
+}
+
+Void printList(struct Node* node) {
+    While (node != NULL) {
+        Printf(“%d “, node->data);
+        Node = node->next;
+    }
+}
+
+Struct Node* getIntersectionNode(struct Node* head1, struct Node* head2) {
+    Struct Node* ptr1 = head1;
+    Struct Node* ptr2 = head2;
+
+    While (ptr1 != ptr2) {
+        Ptr1 = (ptr1 == NULL) ? head2 : ptr1->next;
+        Ptr2 = (ptr2 == NULL) ? head1 : ptr2->next;
+    }
+
+    Return ptr1;
+}
+
+Int main() {
+    Struct Node* intersectNode = NULL;
+    Struct Node* head1 = NULL;
+    Struct Node* head2 = NULL;
+
+    Push(&head1, 3);
+    Push(&head1, 1);
+    Push(&head1, 5);
+    Push(&head1, 9);
+    Push(&head1, 7);
+
+    Push(&head2, 4);
+    Push(&head2, 6);
+    Push(&head2, 7);
+
+    intersectNode = getIntersectionNode(head1, head2);
+
+    printf(“Intersection Point at node with data: %d”, intersectNode->data);
+
+    return 0;
+}
+
