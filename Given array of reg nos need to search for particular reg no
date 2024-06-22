@@ -1,0 +1,22 @@
+#include <stdio.h>
+Int searchRegNo(int arr[], int size, int regNo) {
+    For (int i = 0; i < size; i++) {
+        If (arr[i] == regNo) {
+            Return i; 
+        }
+    }
+    Return -1; 
+Int main() {
+    Int regNos[] = {101, 202, 303, 404, 505, 606, 707, 808, 909};
+    Int size = sizeof(regNos) / sizeof(regNos[0]);
+    Int regNoToSearch;
+    Printf(“Enter the registration number to search: “);
+    Scanf(“%d”, &regNoToSearch);
+    Int result = searchRegNo(regNos, size, regNoToSearch);
+    If (result != -1) {
+        Printf(“Registration number %d found at index %d.\n”, regNoToSearch, result);
+    } else {
+        Printf(“Registration number %d not found.\n”, regNoToSearch);
+    }
+    Return 0;
+}
