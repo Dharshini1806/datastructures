@@ -1,0 +1,24 @@
+#include <stdio.h>
+Unsigned long long factorial(int n) {
+    If (n == 0 || n == 1) {
+        Return 1;
+    } else {
+        Unsigned long long fact = 1;
+        For (int i = 2; i <= n; i++) {
+            Fact *= i;
+        }
+        Return fact;
+    }
+}
+Int main() {
+    Int n;
+    Printf(“Enter a non-negative integer to find its factorial: “);
+    Scanf(“%d”, &n);
+    If (n < 0) {
+        Printf(“Factorial is not defined for negative numbers.\n”);
+    } else {
+        Unsigned long long fact = factorial(n);
+        Printf(“Factorial of %d is: %llu\n”, n, fact);
+    }
+    Return 0;
+}
