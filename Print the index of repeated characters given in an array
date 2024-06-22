@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+Void printRepeatedCharIndices(char* str) {
+    Int len = strlen(str);
+    Int freq[256] = {0};  
+    Int i;
+    For (i = 0; i < len; i++) {
+        Freq[(unsigned char)str[i]]++;
+    }
+    Printf(“Indices of repeated characters:\n”);
+    For (i = 0; i < len; i++) {
+        If (freq[(unsigned char)str[i]] > 1) {
+            Printf(“Character ‘%c’ at index %d\n”, str[i], i);
+        }
+    }
+}
+
+Int main() {
+    Char str[100];
+    Printf(“Enter a string: “);
+    Fgets(str, sizeof(str), stdin);
+    Str[strcspn(str, “\n”)] = ‘\0’;
+    printRepeatedCharIndices(str);
+
+    return 0;
+}
