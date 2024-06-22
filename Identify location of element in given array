@@ -1,0 +1,22 @@
+#include <stdio.h>
+Int findElement(int arr[], int size, int element) {
+    For(int i = 0; i < size; i++) {
+        If(arr[i] == element) {
+            Return i; // Element found, return its index
+        }
+    }
+    Return -1;
+}
+Int main() {
+    // Define the array and its size
+    Int arr[] = {10, 20, 30, 40, 50};
+    Int size = sizeof(arr) / sizeof(arr[0]);
+    Int element = 30;
+    Int index = findElement(arr, size, element;
+    If(index != -1) {
+        Printf(“Element %d is found at index %d.\n”, element, index);
+    } else {
+        Printf(“Element %d is not found in the array.\n”, element);
+    }
+    Return 0;
+}
