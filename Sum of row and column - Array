@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+Int main() {
+    Int rows, cols;
+    Printf(“Enter the number of rows: “);
+    Scanf(“%d”, &rows);
+    Printf(“Enter the number of columns: “);
+    Scanf(“%d”, &cols);
+
+    Int arr[rows][cols];
+    Printf(“Enter the elements of the array:\n”);
+    For (int i = 0; i < rows; i++) {
+        For (int j = 0; j < cols; j++) {
+            Scanf(“%d”, &arr[i][j]);
+        }
+    }
+
+    Printf(“Sum of rows:\n”);
+    For (int i = 0; i < rows; i++) {
+        Int rowSum = 0;
+        For (int j = 0; j < cols; j++) {
+            rowSum += arr[i][j];
+        }
+        Printf(“Row %d: %d\n”, i + 1, rowSum);
+    }
+
+    Printf(“Sum of columns:\n”);
+    For (int j = 0; j < cols; j++) {
+        Int colSum = 0;
+        For (int i = 0; i < rows; i++) {
+            colSum += arr[i][j];
+        }
+        Printf(“Column %d: %d\n”, j + 1, colSum);
+    }
+
+    Return 0;
+}
