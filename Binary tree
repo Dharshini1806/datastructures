@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct Node {
+    Int data;
+    Struct Node* left;
+    Struct Node* right;
+};
+Struct Node* createNode(int data) {
+    Struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+Struct Node* insertNode(struct Node* root, int data) {
+    If (root == NULL) {
+        Return createNode(data);
+    }
+    If (data < root->data) {
+        Root->left = insertNode(root->left, data);
+    } else {
+        Root->right = insertNode(root->right, data);
+    }
+    Return root;
+}
+Void inorderTraversal(struct Node* root) {
+    If (root != NULL) {
+        inorderTraversal(root->left);
+        printf(“%d “, root->data);
+        inorderTraversal(root->right);
+    }
+}
+Struct Node* searchNode(struct Node* root, int data) {
+    If (root == NULL || root->data == data) {
+        Return root;
+    }
+    If (data < root->data) {
+        Return searchNode(root->left, data);
+    } else {
+        Return searchNode(root->right, data);
+    }
+}
+Int main() {
+    Struct Node* root = NULL;
+    Root = insertNode(root, 50);
+    insertNode(root, 30);
+    insertNode(root, 70);
+    insertNode(root, 20);
+    insertNode(root, 40);
+    insertNode(root, 60);
+    insertNode(root, 80);
+    printf(“In-order traversal: “);
+    inorderTraversal(root);
+    printf(“\n”);
+    int key = 60;
+    struct Node* search_result = searchNode(root, key);
+    if (search_result != NULL) {
+        printf(“Node %d found in the binary tree.\n”, key);
+    } else {
+        Printf(“Node %d not found in the binary tree.\n”, key);
+    }
+    Return 0;
+}
