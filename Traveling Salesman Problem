@@ -1,0 +1,91 @@
+#include <stdio.h>
+
+#define V 4
+
+Int tsp_dp(int graph[][V], int start)
+{
+    Int all_visited = (1 << V) – 1;
+    Int dp[V][1 << V];
+    
+    For (int i = 0; i < V; i++)
+    {
+        For (int j = 0; j < (1 << V); j++)
+        {
+            Dp[i][j] = -1;
+        }
+    }
+    
+    Dp[start][1 << start] = 0;
+    
+    For (int mask = 1; mask < (1 << V); mask++)
+    {
+        If (!(mask & (1 << start)))
+        {
+            Continue;
+        }
+        
+        For (int current = 0; current < V; current++)
+        {
+            If (!(mask & (1 << current)) || current == start)
+            {
+                Continue;
+            }
+            
+            For (int last = 0; last < V; last++)
+            {
+                If (mask & (1 << last) && last != current)
+                {
+                    If (dp[current][mask ^ (1 << current)] == -1 || dp[last][mask] == -1)
+                    {
+                        Continue;
+                    }
+                    
+                    If (dp[current][mask ^ (1 << current)] + graph[last][current] < dp[current][mask])
+                    {
+                        Dp[current][mask] = dp[current][mask ^ (1 << current)] + graph[last][current];
+                    }
+                }
+            }
+        }
+    }
+    
+    Int min_cost = -1;
+    
+    For (int i = 0; i < V; i++)
+    {
+        If (i == start)
+        {
+            Continue;
+        }
+        
+        If (dp[i][all_visited] == -1 || graph[i][start] == -1)
+        {
+            Continue;
+        }
+        
+        If (min_cost == -1 || dp[i][all_visited] + graph[i][start] < min_cost)
+        {
+            Min_cost = dp[i][all_visited] + graph[i][start];
+        }
+    }
+    
+    Return min_cost;
+}
+
+Int main()
+{
+    Int graph[V][V] = {
+        {0, 10, 15, 20},
+        {10, 0, 35, 25},
+        {15, 35, 0, 30},
+        {20, 25, 30, 0}
+    };
+    
+    Int start = 0;
+    
+    Int min_cost = tsp_dp(graph, start);
+    
+    Printf(“The minimum cost of the Traveling Salesman Problem starting from node %d is: %d\n”, start, min_cost);
+    
+    Return 0;
+}
