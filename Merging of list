@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct Node {
+    Int data;
+    Struct Node* next;
+};
+Struct Node* createNode(int data) {
+    Struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+Void printList(struct Node* head) {
+    While (head != NULL) {
+        Printf(“%d -> “, head->data);
+        Head = head->next;
+    }
+    Printf(“NULL\n”);
+}
+Struct Node* mergeLists(struct Node* l1, struct Node* l2) {
+    Struct Node dummy;
+    Struct Node* tail = &dummy;
+    Dummy.next = NULL;
+    While (l1 != NULL && l2 != NULL) {
+        If (l1->data < l2->data) {
+            Tail->next = l1;
+            L1 = l1->next;
+        } else {
+            Tail->next = l2;
+            L2 = l2->next;
+        }
+        Tail = tail->next;
+    }
+    Tail->next = (l1 != NULL) ? l1 : l2;
+    Return dummy.next;
+}
+Int main() {
+    Struct Node* l1 = createNode(1);
+    L1->next = createNode(3);
+    L1->next->next = createNode(5);
+    L1->next->next->next = createNode(7);
+    Struct Node* l2 = createNode(2);
+    L2->next = createNode(4);
+    L2->next->next = createNode(6);
+    L2->next->next->next = createNode(8);
+    Printf(“List 1: “);
+    printList(l1);
+    printf(“List 2: “);
+    printList(l2);
+    struct Node* mergedList = mergeLists(l1, l2);
+    printf(“Merged List: “);
+    printList(mergedList);
+    return 0;
+}
