@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+Int findNeedleInHaystack(char *haystack, char *needle) {
+    Int haystackLen = strlen(haystack);
+    Int needleLen = strlen(needle);
+    For (int i = 0; i <= haystackLen – needleLen; i++) {
+        Int j;
+        For (j = 0; j < needleLen; j++) {
+            If (haystack[i + j] != needle[j]) {
+                Break;
+            }
+        }
+        If (j == needleLen) {
+            Return i;
+        }
+    }
+    Return -1;
+}
+Int main() {
+    Char haystack[] = “hello, this is a simple haystack”;
+    Char needle[] = “simple”;
+    Int result = findNeedleInHaystack(haystack, needle);
+    If (result != -1) {
+        Printf(“Needle found at index: %d\n”, result);
+    } else {
+        Printf(“Needle not found in the haystack.\n”);
+    }
+    Return 0;
+}
