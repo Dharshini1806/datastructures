@@ -1,0 +1,23 @@
+#include <stdio.h>
+Long long fibonacciSum(int n) {
+    If (n <= 0) {
+        Return 0;
+    }
+    Long long fib[n+1];
+    Fib[0] = 0; 
+    Fib[1] = 1; 
+    Long long sum = fib[0] + fib[1]; 
+    For (int i = 2; i <= n; i++) {
+        Fib[i] = fib[i-1] + fib[i-2];
+        Sum += fib[i];
+    }
+    Return sum;
+}
+Int main() {
+    Int n;
+    Printf(“Enter the number of terms for Fibonacci series: “);
+    Scanf(“%d”, &n);
+    Long long sum = fibonacciSum(n);
+    Printf(“Sum of the first %d Fibonacci numbers is: %lld\n”, n, sum);
+    Return 0;
+}
