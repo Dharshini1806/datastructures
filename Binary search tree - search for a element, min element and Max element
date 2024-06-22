@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+Struct Node {
+    Int data;
+    Struct Node* left;
+    Struct Node* right;
+};
+
+Struct Node* insert(struct Node* node, int data) {
+    If (node == NULL) {
+        Struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+        Temp->data = data;
+        Temp->left = temp->right = NULL;
+        Return temp;
+    }
+
+    If (data < node->data)
+        Node->left = insert(node->left, data);
+    Else if (data > node->data)
+        Node->right = insert(node->right, data);
+
+    Return node;
+}
+
+Struct Node* minValueNode(struct Node* node) {
+    Struct Node* current = node;
+
+    While (current && current->left != NULL)
+        Current = current->left;
+
+    Return current;
+}
+
+Struct Node* maxValueNode(struct Node* node) {
+    Struct Node* current = node;
+
+    While (current && current->right != NULL)
+        Current = current->right;
+
+    Return current;
+}
+
+Int main() {
+    Struct Node* root = NULL;
+    Root = insert(root, 20);
+    Insert(root, 10);
+    Insert(root, 30);
+    Insert(root, 5);
+    Insert(root, 15);
+
+    Struct Node* minNode = minValueNode(root);
+    Struct Node* maxNode = maxValueNode(root);
+
+    Printf(“Minimum element in the BST: %d\n”, minNode->data);
+    Printf(“Maximum element in the BST: %d\n”, maxNode->data);
+
+    Return 0;
+}
