@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+Struct Edge {
+    Int src, dest, weight;
+};
+Struct Graph {
+    Int V, E;
+    Struct Edge* edge;
+};
+Struct Subset {
+    Int parent;
+    Int rank;
+};
+Struct Graph* createGraph(int V, int E) {
+    Struct Graph* graph = (struct Graph*) malloc(sizeof(struct Graph));
+    Graph->V = V;
+    Graph->E = E;
+    Graph->edge = (struct Edge*) malloc(graph->E * sizeof(struct Edge));
+    Return graph;
+}
+Int find(struct Subset subsets[], int i) {
+    If (subsets[i].parent != i) {
+        Subsets[i].parent = find(subsets, subsets[i].parent);
+    }
+    Return subsets[i].parent;
+}
+Void Union(struct Subset subsets[], int x, int y) {
+    Int xroot = find(subsets, x);
+    Int yroot = find(subsets, y);
+    If (subsets[xroot].rank < subsets[yroot].rank) {
+        Subsets[xroot].parent = yroot;
+    } else if (subsets[xroot].rank > subsets[yroot].rank) {
+        Subsets[yroot].parent = xroot;
+    } else {
+        Subsets[yroot].parent = xroot;
+        Subsets[xroot].rank++;
+    }
+}
+Int compareEdges(const void* a, const void* b) {
+    Struct Edge* edgeA = (struct Edge*)a;
+    Struct Edge* edgeB = (struct Edge*)b;
+    Return edgeA->weight – edgeB->weight;
+}
+Void printMST(struct Edge result[], int E) {
+    Printf(“Edges in the Minimum Spanning Tree:\n”);
+    For (int i = 0; i < E; i++) {
+        Printf(“%d -- %d == %d\n”, result[i].src, result[i].dest, result[i].weight);
+    }
+}
+Void KruskalMST(struct Graph* graph) {
+    Int V = graph->V;
+    Struct Edge result[V];
+    Int e = 0;
+    Int i = 0;
+    Qsort(graph->edge, graph->E, sizeof(graph->edge[0]), compareEdges);
+    Struct Subset* subsets = (struct Subset*) malloc(V * sizeof(struct Subset));
+    For (int v = 0; v < V; v++) {
+        Subsets[v].parent = v;
+        Subsets[v].rank = 0;
+    }
+    While (e < V – 1 && i < graph->E) {
+        Struct Edge next_edge = graph->edge[i++];
+        Int x = find(subsets, next_edge.src);
+        Int y = find(subsets, next_edge.dest);
+        If (x != y) {
+            Result[e++] = next_edge;
+            Union(subsets, x, y);
+        }
+    }
+    printMST(result, e);
+    free(subsets);
+}
+Int main() {
+    Int V = 4;
+    Int E = 5;
+    Struct Graph* graph = createGraph(V, E);
+    Graph->edge[0].src = 0;
+    Graph->edge[0].dest = 1;
+    Graph->edge[0].weight = 10;
+    Graph->edge[1].src = 0;
+    Graph->edge[1].dest = 2;
+    Graph->edge[1].weight = 6;
+    Graph->edge[2].src = 0;
+    Graph->edge[2].dest = 3;
+    Graph->edge[2].weight = 5;
+    Graph->edge[3].src = 1;
+    Graph->edge[3].dest = 3;
+    Graph->edge[3].weight = 15;
+    Graph->edge[4].src = 2;
+    Graph->edge[4].dest = 3;
+    Graph->edge[4].weight = 4;
+    KruskalMST(graph);
+
+    Free(graph->edge);
+    Free(graph);
+    Return 0;
+}
