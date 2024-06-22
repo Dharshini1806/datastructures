@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+Void swap(char* a, char* b) {
+    Char temp = *a;
+    *a = *b;
+    *b = temp;
+}
+Void sortString(char* str) {
+    Int n = strlen(str);
+    For (int i = 0; i < n-1; i++) {
+        For (int j = 0; j < n-i-1; j++) {
+            If (str[j] > str[j+1]) {
+                Swap(&str[j], &str[j+1]);
+            }
+        }
+    }
+}
+Int main() {
+    Char str[100];
+    Printf(“Enter a string: “);
+    Fgets(str, sizeof(str), stdin);
+    Str[strcspn(str, “\n”)] = ‘\0’;
+    sortString(str);
+    printf(“Sorted string: %s\n”, str);
+    return 0;
+}
