@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+Struct Stack {
+    Int items[MAX_SIZE];
+    Int top;
+};
+
+Void push(struct Stack *s, int value) {
+    If (s->top == MAX_SIZE – 1) {
+        Printf(“Stack is full\n”);
+    } else {
+        s->top++;
+        s->items[s->top] = value;
+    }
+}
+
+Int pop(struct Stack *s) {
+    If (s->top == -1) {
+        Printf(“Stack is empty\n”);
+        Return -1;
+    } else {
+        Int popped = s->items[s->top];
+        s->top--;
+        return popped;
+    }
+}
+
+Void addBottomTop(struct Stack *s) {
+    If (s->top < 1) {
+        Printf(“Not enough elements in the stack to perform addition\n”);
+    } else {
+        Int sum = s->items[0] + s->items[s->top];
+        Printf(“Sum of bottom-most and top-most elements: %d\n”, sum);
+    }
+}
+
+Int main() {
+    Struct Stack stack;
+    Stack.top = -1;
+
+    Push(&stack, 10);
+    Push(&stack, 20);
+    Push(&stack, 30);
+
+    addBottomTop(&stack);
+
+    return 0;
+}
