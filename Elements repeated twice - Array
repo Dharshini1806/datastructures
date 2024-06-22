@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+Int findDuplicate(int arr[], int size) {
+    For (int i = 0; i < size; i++) {
+        For (int j = i + 1; j < size; j++) {
+            If (arr[i] == arr[j]) {
+                Return arr[i];
+            }
+        }
+    }
+    Return -1; // If no duplicate found
+}
+
+Int main() {
+    Int arr[] = {1, 2, 3, 4, 4, 5};
+    Int size = sizeof(arr) / sizeof(arr[0]);
+    
+    Int duplicate = findDuplicate(arr, size);
+    
+    If (duplicate != -1) {
+        Printf(“Duplicate element: %d\n”, duplicate);
+    } else {
+        Printf(“No duplicate element found\n”);
+    }
+    
+    Return 0;
+}
