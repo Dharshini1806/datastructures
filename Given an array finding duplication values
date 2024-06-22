@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+Void findDuplicates(int arr[], int size) {
+    Int max = arr[0];
+    For (int i = 1; i < size; i++) {
+        If (arr[i] > max) {
+            Max = arr[i];
+        }
+    }
+    Int *hashTable = (int *)calloc(max + 1, sizeof(int));
+    For (int i = 0; i < size; i++) {
+        hashTable[arr[i]]++;
+    }
+    Printf(“Duplicate values: “);
+    For (int i = 0; i <= max; i++) {
+        If (hashTable[i] > 1) {
+            Printf(“%d “, i);
+        }
+    }
+    Printf(“\n”);
+    Free(hashTable);
+}
+Int main() {
+    Int arr[] = {1, 2, 3, 4, 5, 1, 2, 6, 7, 8, 9, 1, 2};
+    Int size = sizeof(arr) / sizeof(arr[0]);
+    findDuplicates(arr, size);
+    return 0;
+}
